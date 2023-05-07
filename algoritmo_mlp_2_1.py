@@ -99,3 +99,27 @@ def redeMLP_21(x, d, eta, Nt, Nb, Ne, W01_1, W02_1, W01_2):
             print(f"Época: {k}, MSE: {J_MSE[k]}")
           
     return J_MSE, W1_1, W2_1, W1_2
+
+# Parâmetros da rede
+
+# passo de adaptação do algoritmo backpropagation
+eta = 0.9
+
+# Inicialização dos pesos
+W01_1 = 0.2 * np.random.rand(1, 3) - 0.01
+W02_1 = 0.2 * np.random.rand(1, 3) - 0.01
+W01_2 = 0.2 * np.random.rand(1, 3) - 0.01
+
+# Treinamento
+
+# Tamanho do mini-batch
+Nb = 20
+
+# Número de épocas
+Ne = 5000
+
+Nt = 500
+x = np.round(np.random.uniform(0, 1, (Nt, 2)), 0)
+d = 1 * (np.logical_xor(x[:, [0]], x[:, [1]]))
+
+(J_MSE, W1_1, W2_1, W1_2) = redeMLP_21(x, d, eta, Nt, Nb, Ne, W01_1, W02_1, W01_2)
