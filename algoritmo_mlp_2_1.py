@@ -123,3 +123,49 @@ x = np.round(np.random.uniform(0, 1, (Nt, 2)), 0)
 d = 1 * (np.logical_xor(x[:, [0]], x[:, [1]]))
 
 (J_MSE, W1_1, W2_1, W1_2) = redeMLP_21(x, d, eta, Nt, Nb, Ne, W01_1, W02_1, W01_2)
+
+def redeMLP_teste_21(x, d, W1_1, W2_1, W1_2, Nteste):
+    """
+    J_MSE,y = redeMLP_teste_21(x, d, W1_1, W2_1, W1_2, Nn, Nteste)
+    Saídas:
+    J_MSE: valor da função custo no teste
+    y: saída da rede MLP
+    Entradas:
+    x: sinal de entrada
+    d: sinal desejado
+    W1_1: vetor de pesos do neurônio 1 da camada 1
+    W2_1: vetor de pesos do neurônio 2 da camada 1
+    W1_2: vetor de pesos do neurônio 1 da camada de saída
+    Nteste: número de dados de teste
+    """
+   
+    # insere 1's por causa do bias    
+    x = np.hstack((np.ones((Nteste, 1)), x))
+
+
+    J_MSE = np.zeros((Nteste, 1))
+    y = np.zeros((Nteste, 1))
+    e = np.zeros((Nteste, 1))
+    b = 1
+
+    for n in range(Nteste):
+        X1 = x[n, :]
+
+        # cálculo progressivo com os pesos fixos da última época
+        v1_1 = X1 @ W1_1.T
+        y1_1 = sigmoid(v1_1)
+            
+        v2_1 = X1 @ W2_1.T
+        y2_1 = sigmoid(v2_1)
+
+        X2 = np.hstack((b, y1_1, y2_1))
+
+        v1_2 = X2 @ W1_2.T
+        y1_2 = sigmoid(v1_2)
+            
+            
+        y[n, :] = y1_2
+        e[n, :] = d[n, :] - y[n, :]
+        J_MSE[n] = (J_MSE[n] + (np.linalg.norm(e[n, :])) ** 2) / (1)
+
+    return J_MSE, y

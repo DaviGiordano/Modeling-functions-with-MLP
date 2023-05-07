@@ -1,0 +1,20 @@
+inverse
+mse_min: 0.010570667553193172 
+melhores hyperparâmetros: [1000, 20, 0.6]
+mse_min: 45940.969896287956 
+melhores hyperparâmetros: [5000, 100, 0.6]
+log:
+mse_min: 0.010570667553193172 
+melhores hyperparâmetros: [1000, 20, 0.6]
+mse_min: 45940.969896287956 
+melhores hyperparâmetros: [5000, 100, 0.6]
+exp
+mse_min: 0.007566691115223755 
+melhores hyperparâmetros: [1000, 15, 1.2]
+mse_min: 45940.969896287956 
+melhores hyperparâmetros: [5000, 100, 0.6]
+sin
+mse_min: 0.007566691115223755 
+melhores hyperparâmetros: [1000, 15, 1.2]
+mse_min: 45940.969896287956 
+melhores hyperparâmetros: [5000, 100, 0.6]
